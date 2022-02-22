@@ -72,8 +72,6 @@ class MinHeap():
     # Restore heap order after removing the root node element
     def heapifyDown(self):
         index = 0
-
-
         while self.hasLeftChild(index): # If no left child, then no right child
 
             # Determine which child node has the smallest value - that is the one to swap with
