@@ -98,3 +98,4 @@ if __name__ == "__main__":
     print(f"Heap B before inserting a new element: {heap_b.items}")
     heap_b.add(6)
     print(f"Heap B after inserting a new element: {heap_b.items}")
+    
