@@ -34,3 +34,19 @@ if __name__ == "__main__":
     print(f"Stack after pop: {s}")
     print(f"Next element of stack to be popped: {s.peek()}")
     print(f"Final size of stack: {s.size()}")
+
+    # String reversal using a stack
+    print("-------------------------------------")
+    print("String reversal using a stack")
+    string = "!looc era skcatS"
+    print(f"Original string: {string}")
+    reversed_string = ""
+    stack = Stack()
+
+    for char in string:
+        stack.push(char)
+
+    while not stack.is_empty():
+        reversed_string += stack.pop()
+
+    print(f"Reversed string: {reversed_string}")
