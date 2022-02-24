@@ -65,3 +65,6 @@ if __name__ == "__main__":
     ll.prepend("Sunday")
     print(f"Elements of the linked list after prepending an element: {ll}")
     print(f"Head of the linked list after prepending an element: {ll.head}")
+    ll.deleteWithValue("Friday")
+    print(f"Elements of the linked list after deleting the last element: {ll}")
+
