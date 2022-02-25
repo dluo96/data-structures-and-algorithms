@@ -4,7 +4,7 @@ class Node():
         self.nextNode = None
     
     def __str__(self) -> str:
-        return self.data
+        return str(self.data)
     
 class LinkedList():
     def __init__(self) -> None:
@@ -12,7 +12,7 @@ class LinkedList():
 
     def append(self, data):
         if self.head is None:
-            head = Node(data)
+            self.head = Node(data)
             return 
         currentNode = self.head
         while currentNode.nextNode != None:
@@ -41,7 +41,7 @@ class LinkedList():
             currentNode = currentNode.nextNode
     
     def __str__(self) -> str:
-        output = ""
+        output = 'LinkedList: '
         currentNode = self.head
         while currentNode is not None:
             output += str(currentNode) + ' '
@@ -52,19 +52,19 @@ class LinkedList():
 if __name__ == "__main__":
     
     ll = LinkedList()
-    ll.head = Node("Monday")
+    ll.append("Monday")
+    print(f"Head of the linked list: {ll.head}")
     ll.head.nextNode = Node("Tuesday")
     ll.head.nextNode.nextNode = Node("Wednesday")
     ll.head.nextNode.nextNode.nextNode = Node("Thursday")
-    print(f"Head of the linked list: {ll.head}")
-    print(f"Elements of the linked list: {ll}")
+    print(f"After inserting 3 additional elements -> {ll}")
     ll.deleteWithValue("Wednesday")
-    print(f"Elements of the linked list after removing an element: {ll}")
+    print(f"After removing an element -> {ll}")
     ll.append("Friday")
-    print(f"Elements of the linked list after appending an element: {ll}")
+    print(f"After appending an element -> {ll}")
     ll.prepend("Sunday")
-    print(f"Elements of the linked list after prepending an element: {ll}")
+    print(f"After prepending an element -> {ll}")
     print(f"Head of the linked list after prepending an element: {ll.head}")
     ll.deleteWithValue("Friday")
-    print(f"Elements of the linked list after deleting the last element: {ll}")
+    print(f"After deleting the last element -> {ll}")
 
