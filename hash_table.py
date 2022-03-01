@@ -1,4 +1,4 @@
-from linear_data_structures.linked_list import LinkedList
+from linked_list import LinkedList
 
 class HashTable():
     """Implementation of a hash table which uses chaining to resolve collisions"""

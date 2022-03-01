@@ -48,4 +48,5 @@ if __name__ == "__main__":
     node = Node(10)
     for value in [5, 15, 8, 17, 2]:
         node.insert(value)
+    print(f"Inorder traversal of binary search tree:")
     node.traversalInOrder()
