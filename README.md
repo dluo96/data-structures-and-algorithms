@@ -1,5 +1,21 @@
 # Data Structures and Algorithms
-In this repository, I implement some important data structures. 
+In this repository, I describe and/or implement some important data structures:
+- [x] Array
+- [x] Linked List
+- [x] Hash Table
+- [x] Minimum Heap
+- [x] Binary Search Tree (BST)
+- [x] Stack
+- [ ] Queue
+- [ ] Dequek
+- [ ] Graph
+
+I also discuss the relationship between
+- Stacks and the Depth-First Search (DFS) algorithm
+- Queues and the Breadth-First Search (BFS) algorithm
+- Priority Queues and the A* Search algorithm
+
+## Array
 
 ## Linked List
 A linked list is a data structure where each element links to the next element, which links to the next element, and so on. It can contains pretty much any type of data including
@@ -24,3 +40,16 @@ Note that two different keys (e.g. strings) could have the same hash code. This 
 
 ### Runtime of a Hash Table
 The time complexity of operations in a hash table depend on what assumptions we make. Most of the time, we can assume we have a good hash table with a good hash funcion which distributes our values well. For this case, the time complexity of insert, find (lookup), and delete is O(1), i.e. constant time. In the worst case scenario, the time complexity for these operations is O(n). 
+
+## Minimum Heap
+
+## Binary Search Tree (BST)
+
+## Stack
+
+## Queue
+
+### Priority Queue
+
+
+
