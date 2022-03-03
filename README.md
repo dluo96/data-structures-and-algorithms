@@ -1,5 +1,28 @@
 # Data Structures and Algorithms
-In this repository, I describe and/or implement some important data structures:
+
+## Introduction
+### What is a data structure?
+> A data structure (DS) is a way of organizing data so that it can be used effectively. 
+
+### Abstract Data Type vs. Data Structure
+> An abstract data structure (ADT) is an abstraction of a data structure which provides only the interface to which a data structure must adhere to. The interface does not give any specific details about how something should be implemented or in which programming language.
+
+Examples of ADT vs DS include:
+| Abstract Data Type (ADT)      | Implementation (i.e. DS) |
+| ----------- | ----------- |
+| List        | Dynamic Array, Linked List|
+| Queue       | Linked List based Queue, Stack based Queue, Array based Queue |
+| Map         | Hash Table / Hash Map, Tree Map |
+
+Importantly, we see that each ADT can be implemented in a variety of ways. The key point is that an ADT only defines how a DS should behave and what methods it should have, **not** the implementation details of those methods. 
+
+### Computational Complexity
+Complexity analysis answers two key qustions about an algorithm:
+- How much **time** does the algorithm take to finish?
+- How much **space** does the algorithm need for its computation(s)?
+
+### Repository structure
+In this repository, I cover and/or implement some important data structures:
 - [x] Array
 - [x] Linked List
 - [x] Hash Table
@@ -52,4 +75,5 @@ The time complexity of operations in a hash table depend on what assumptions we 
 ### Priority Queue
 
 
-
+# References
+- [Data Structures Easy to Advanced Course](https://www.youtube.com/watch?v=RBSGKlAvoiM)
