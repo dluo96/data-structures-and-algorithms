@@ -21,9 +21,19 @@ Complexity analysis answers two key qustions about an algorithm:
 - How much **time** does the algorithm take to finish?
 - How much **space** does the algorithm need for its computation(s)?
 
+Suppose n is the size of the input of an algorithm. I will use the following terms throughout the repo:
+- Constant time: O(1)
+- Logarithmic time: O(log n)
+- Linear time: O(n)
+- Linearithmic time: O(n log n)
+- Quadratic time: O(n^2)
+- Exponential time: O(b^n) where b > 1
+- Factorial time: O(n!)
+
+
 ### Repository structure
 In this repository, I cover and/or implement some important data structures:
-- [x] Array
+- [x] Static Arrays and Dynamic Arrays
 - [x] Linked List
 - [x] Hash Table
 - [x] Minimum Heap
@@ -38,7 +48,38 @@ I also discuss the relationship between
 - Queues and the Breadth-First Search (BFS) algorithm
 - Priority Queues and the A* Search algorithm
 
-## Array
+## Static Arrays and Dynamic Arrays
+The array DS is important because it is used a fundamental building block of all other data structures. With arrays and pointers alone, it is possible to implement almost any DS. 
+
+### Static Array
+> A **static array** is a *fixed-length* container containing n elements that are **indexable** from `[0, 1, ..., n-1]`. 
+
+By "indexable" we mean that the slot of each element of the static array can be referenced with an integer. It is also worth noting that:
+> Static arrays are given as contiguous chunks of memory. That is, all the addresses are adjacent. 
+
+Applications of static arrays include
+- Storing and accessing sequential data
+- Usage by IO routines as buffers
+- Usage in dynamic programming to cache answers to subproblems
+
+#### Time complexity
+| Operation      | Static Array | Dynamic Array |
+| -----------    | -----------  | ----------- |
+| Access         | O(1) | O(1) |
+| Search         | O(n) | O(n) |
+| Insert         | N/A | O(n)  |
+| Append         | N/A | O(1)  |
+| Delete         | N/A | O(n)  |
+
+Insertion, appending, and deletion don't make much sense for a static array since it has a fixed size - it cannot grow larger or smaller. 
+
+## Dynamic Array
+> A **dynamic array** can grow and shrink in size.
+
+One way to implement a dynamic array is using a static array! These are the steps:
+1. Create a static array with an initial capacity
+2. Add elements to this underlying static array while keeping track of the number of elements
+3. If addition of an element means that the capacity is exceeded, create a new static array with twice the capacity and copy the original elements into it. 
 
 ## Linked List
 A linked list is a data structure where each element links to the next element, which links to the next element, and so on. It can contains pretty much any type of data including
