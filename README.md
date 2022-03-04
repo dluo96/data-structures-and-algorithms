@@ -62,7 +62,7 @@ Applications of static arrays include
 - Usage by IO routines as buffers
 - Usage in dynamic programming to cache answers to subproblems
 
-## Dynamic Array
+### Dynamic Array
 > A **dynamic array** can grow and shrink in size.
 
 One way to implement a dynamic array is using a static array! These are the steps:
