@@ -62,7 +62,15 @@ Applications of static arrays include
 - Usage by IO routines as buffers
 - Usage in dynamic programming to cache answers to subproblems
 
-#### Time complexity
+## Dynamic Array
+> A **dynamic array** can grow and shrink in size.
+
+One way to implement a dynamic array is using a static array! These are the steps:
+1. Create a static array with an initial capacity
+2. Add elements to this underlying static array while keeping track of the number of elements
+3. If addition of an element means that the capacity is exceeded, create a new static array with twice the capacity and copy the original elements into it. 
+
+### Time complexity
 | Operation      | Static Array | Dynamic Array |
 | -----------    | -----------  | ----------- |
 | Access         | O(1) | O(1) |
@@ -72,14 +80,6 @@ Applications of static arrays include
 | Delete         | N/A | O(n)  |
 
 Insertion, appending, and deletion don't make much sense for a static array since it has a fixed size - it cannot grow larger or smaller. 
-
-## Dynamic Array
-> A **dynamic array** can grow and shrink in size.
-
-One way to implement a dynamic array is using a static array! These are the steps:
-1. Create a static array with an initial capacity
-2. Add elements to this underlying static array while keeping track of the number of elements
-3. If addition of an element means that the capacity is exceeded, create a new static array with twice the capacity and copy the original elements into it. 
 
 ## Linked List
 ### Singly Linked List
