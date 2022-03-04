@@ -5,10 +5,10 @@
 > A **data structure (DS)** is a way of organizing data so that it can be used effectively. 
 
 ### Abstract Data Type vs. Data Structure
-> An **abstract data structure (ADT)** is an abstraction of a data structure which provides only the interface to which a data structure must adhere to. The interface does not give any specific details about how something should be implemented or in which programming language.
+> An **abstract data type (ADT)** is an abstraction of a data structure which provides only the interface to which a data structure must adhere to. The interface does not give any specific details about how something should be implemented or in which programming language.
 
 Examples of ADT vs DS include:
-| Abstract Data Type (ADT)      | Implementation (i.e. DS) |
+| Abstract Data Type (ADT)      | Example Data Structures (i.e implementations) |
 | ----------- | ----------- |
 | List        | Dynamic Array, Linked List|
 | Queue       | Linked List based Queue, Stack based Queue, Array based Queue |
@@ -176,7 +176,9 @@ A queue can be implemented in different ways including using an array, a singly 
 ## Priority Queue
 > A **priority queue (PQ)** is an abstract data type (ADT) that operates similarly to a regular queue *except each element has a priority*. The priority of the elements in the PQ determine the order in which elements are removed from the PQ. 
 
-Note that PQs only support comparable data, i.e. the data must be able to be ordered in some way. This is necessary to ensure we can assign a priority to each element. 
+Note that PQs only support comparable data, i.e. the data must be able to be ordered in some way. This is necessary to ensure we can assign a priority to each element. Application of PQs include:
+- A* Search in graph traversal: the PQ is used to grab the most promising node
+- Any time you need to fetch the next "best" element or next "worst" element
 
 ### Priority Queue and Heap
 How does a PQ know which of its element has the highest priority? Does it sort all the elements? No, it uses a heap. 
@@ -188,6 +190,19 @@ Concretely, this means we have two types of heap:
 - **Maximum Heap**: each child node is smaller than its parent node. 
 - **Minimum Heap**: each child node is larger than its parent node. 
 
+### Complexity
+The table below assumes that the PQ has been implemented via a binary heap. 
+| Operation      | Queue | 
+| -----------    | -----------  | 
+| Polling        | O(log n) |
+| Peeking | O(1) | 
+| Adding | O(log n)  | 
+| Removing an element which isn't the root node | O(n) |
+| Contains (a non-root element) | O(n) |
+| Removing with the help of a hash table | O(log n) |
+| Contains with the help of a hash table | O(1) |
+
+Polling both take logarithmic time because you need to restore the heap property once you have removed the root element. Similarly, adding takes logarithmic time because you need to restore the heap property once you have added an element to the heap. Note that using a hash table will lead to a space complexity of O(n). 
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
