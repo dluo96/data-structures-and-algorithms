@@ -1,4 +1,4 @@
-from linked_list import LinkedList
+from singly_linked_list import LinkedList
 
 class HashTable():
     """Implementation of a hash table which uses chaining to resolve collisions"""
