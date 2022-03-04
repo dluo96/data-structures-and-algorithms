@@ -2,10 +2,10 @@
 
 ## Introduction
 ### What is a data structure?
-> A data structure (DS) is a way of organizing data so that it can be used effectively. 
+> A **data structure (DS)** is a way of organizing data so that it can be used effectively. 
 
 ### Abstract Data Type vs. Data Structure
-> An abstract data structure (ADT) is an abstraction of a data structure which provides only the interface to which a data structure must adhere to. The interface does not give any specific details about how something should be implemented or in which programming language.
+> An **abstract data structure (ADT)** is an abstraction of a data structure which provides only the interface to which a data structure must adhere to. The interface does not give any specific details about how something should be implemented or in which programming language.
 
 Examples of ADT vs DS include:
 | Abstract Data Type (ADT)      | Implementation (i.e. DS) |
@@ -39,7 +39,7 @@ In this repository, I cover and/or implement some important data structures:
 - [x] [Minimum Heap](min_heap.py)
 - [x] [Binary Search Tree (BST)](binary_search_tree.py)
 - [x] [Stack](stack.py)
-- [ ] Queue
+- [ ] Queue and Priority Queue
 - [ ] Dequek
 - [ ] Graph
 
@@ -152,7 +152,41 @@ The table below assumes you have implemented the stack using a linked list.
 | Size | O(1) |
 
 ### Implementation
-A stack can be implemented in different ways including using an array, a singly linked list, and a doubly linked list. 
+A stack can be implemented in different ways including using an array, a singly linked list, or a doubly linked list. 
+
+## Queue
+> A **queue** is a linear data structure which models real-world queues by having two main operations, namely **enqueue** and **dequeue**.
+
+A queue is a **first-in first-out (FIFO)** data structure. Note that enqueue is also known as adding or offering. Dequeue is also known as polling or removing. Applications of queues include:
+- Web server request management where you want first-come first-served
+- **Breadth-First Search (BFS)** for **graph traversal**
+
+### Time complexity
+| Operation      | Queue | 
+| -----------    | -----------  | 
+| Enqueue         | O(1) |
+| Dequeue | O(1) | 
+| Peek | O(1) | 
+| Contains | O(n) | 
+| Removal | O(n) |
+
+### Implementation
+A queue can be implemented in different ways including using an array, a singly linked list, or a doubly linked list. 
+
+## Priority Queue
+> A **priority queue (PQ)** is an abstract data type (ADT) that operates similarly to a regular queue *except each element has a priority*. The priority of the elements in the PQ determine the order in which elements are removed from the PQ. 
+
+Note that PQs only support comparable data, i.e. the data must be able to be ordered in some way. This is necessary to ensure we can assign a priority to each element. 
+
+### Priority Queue and Heap
+How does a PQ know which of its element has the highest priority? Does it sort all the elements? No, it uses a heap. 
+> A **heap** is a tree based DS which satisfies the **heap property**: if A is a parent node of B, then A is ordered with respect to B for all nodes A and B in the heap. 
+
+A heap is the underlying DS for a PQ (recall that a PQ is an ADT). Though a heap is the most common implementation of a PQ, a PQ can also be implemented in other ways. 
+
+Concretely, this means we have two types of heap:
+- **Maximum Heap**: each child node is smaller than its parent node. 
+- **Minimum Heap**: each child node is larger than its parent node. 
 
 
 ## Hash Tables
@@ -168,7 +202,6 @@ The time complexity of operations in a hash table depend on what assumptions we 
 
 ## Binary Search Tree (BST)
 
-## Queue
 
 ### Priority Queue
 
