@@ -82,19 +82,55 @@ One way to implement a dynamic array is using a static array! These are the step
 3. If addition of an element means that the capacity is exceeded, create a new static array with twice the capacity and copy the original elements into it. 
 
 ## Linked List
-A linked list is a data structure where each element links to the next element, which links to the next element, and so on. It can contains pretty much any type of data including
+### Singly Linked List
+> A **singly linked list** is a sequential list of nodes where each node has data and a pointer to another node. 
+
+Thus, each element links to the next element, which links to the next element, and so on. The last node points to `NULL`, i.e. it has a `NULL` reference. Some key terms are:
+- **Head**: the first node in a linked list.
+- **Tail**: the last node in a linked list. 
+- **Pointer**: a reference to another node.
+- **Node**: an object containing data and a pointer
+
+Importantly, each node in a singly linked lists holds only one pointer to the next node.
+
+A linked list can contains pretty much any type of data including
 - Strings
 - Characters
 - Numbers
 
 The elements of the linked list can be unsorted or sorted. It can contain duplicate elements or all unique elements. 
 
+Applications of linked lists include
+- Some implementations of the ADTs List, Stack, and Queue
+- Creating a circular list (where the pointer of the last node point to the first node)
+- Implementation of hash tables that use separate **chaining** to deal with hashing **collisions**
+- Implementation of adjacency lists for graphs
+
 ### Linked List vs. Array
 
-One of the things that distinguishes a linked list from an array, which shares many of the same properties, is that the array elements are indexed. For example, you could get the fourth element via `a[3]` (constant time). In a linked list, you must start with the head and work your way through until you get to the fourth element. This takes linear time, so it's quite a bit slower. So why would you use a linked list? Insertions and deletions can be very quick! If you want to insert an element right at the beginning of a linked list, that can be done in constant time. Likewise, if you want to delete an element from the beginning of a linked list, that also takes constant time. That is very fast. However, if you want to append an element to the end of a linked list, you have to go through the entire linked list, which takes linear time. 
+One of the things that distinguishes a linked list from an array, which shares many of the same properties, is that the array elements are indexed. For example, you could get the fourth element via `a[3]` (constant time). In a linked list, you must start with the head and work your way through until you get to the fourth element. This takes linear time, so it's quite a bit slower. So why then would you use a linked list? The answer is that insertions and deletions can be very quick! If you want to insert an element right at the beginning of a linked list, that can be done in constant time. Likewise, if you want to delete an element from the beginning of a linked list, that also takes constant time. That is very fast. However, if you want to append an element to the end of a linked list, you have to go through the entire linked list, which takes linear time (NB: if your implementation keeps track of the tail node, appending an element is actually takes constant time). 
 
 ### Doubly Linked List
+> In a **doubly linked list**, each node has two pointers, namely one reference to the next node and one reference to the previous node. 
 It is similar to a singly linked list, but in addition to each element having a link to the next element, each element also links to the previous element. This can be very useful for certain operations. 
+
+### Singly vs. Doubly Linked Lists
+| Data Structure      | Advantages  | Disadvantages |
+| -----------         | ----------- | ----------- |
+| Singly Linked List  | Less memory, simpler implementation| Not easy to access previous elements | 
+| Doubly Linked List  | Can be traversed backwards | Takes ~2x the memory |
+
+Assuming that the implementation of the singly linked list keeps track of the head node but not the tail node, we have:
+#### Time complexity
+| Operation      | Singly Linked List | Doubly Linked List |
+| -----------    | -----------  | ----------- |
+| Search         | O(n) | O(n) |
+| Insert at head | O(1) | O(1)  |
+| Insert at tail | O(n) | O(1)  |
+| Remove at head | O(1) | O(1)  |
+| Remove at tail | O(n) | O(1)  |
+| Remove in middle | O(n) | O(n)|
+
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
