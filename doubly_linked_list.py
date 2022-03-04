@@ -110,9 +110,9 @@ class DoublyLinkedList():
 
         # Memory cleanup (more relevant for C/C++)
         node.data = None
-        node = None
         node.prev = None
         node.next = None
+        node = None
 
         self.size -= 1
 
@@ -125,17 +125,17 @@ class DoublyLinkedList():
             if trav.data == value:
                 self.removeNode(trav)
                 return True
+            trav = trav.next
         return False
 
     def indexOf(self, value):
         index = 0
         trav = self.head
-
         while trav is not None:
             if trav.data == value:
                 return index
             index += 1
-        
+            trav = trav.next
         return -1
     
     def contains(self, value):
@@ -153,11 +153,9 @@ if __name__ == "__main__":
     print(f"Head of the doubly linked list: {dll.head.data}")
     print(f"Size of the doubly linked list: {dll.size}")
 
-    dll.clear()
-    print(dll.head)
+    dll.removeGivenValue(3)
+    print(f"Index of the element 3 is: {dll.indexOf(3)}")
 
-
-
-
-        
-
+    print(f"Index of the element 10 is: {dll.indexOf(10)}")
+    print(f"Index of the element -5 is: {dll.indexOf(-5)}")
+    print(f"Index of the element 7 is: {dll.indexOf(7)}")
