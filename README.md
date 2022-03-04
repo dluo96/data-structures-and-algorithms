@@ -184,11 +184,11 @@ Note that PQs only support comparable data, i.e. the data must be able to be ord
 How does a PQ know which of its element has the highest priority? Does it sort all the elements? No, it uses a heap. 
 > A **heap** is a tree based DS which satisfies the **heap property**: if A is a parent node of B, then A is ordered with respect to B for all nodes A and B in the heap. 
 
-A heap is the underlying DS for a PQ (recall that a PQ is an ADT). Though a heap is the most common implementation of a PQ, a PQ can also be implemented in other ways. 
-
 Concretely, this means we have two types of heap:
 - **Maximum Heap**: each child node is smaller than its parent node. 
 - **Minimum Heap**: each child node is larger than its parent node. 
+
+A heap is one possible implementation (DS) for a PQ (recall that a PQ is an ADT), but a PQ can also be implemented in other ways. PQs are usually implemented with heaps because this gives them the best possible time complexity. One could implement a PQ using an unsorted list, however this would not give the best time complexity. 
 
 ### Complexity
 The table below assumes that the PQ has been implemented via a binary heap. 
@@ -197,12 +197,23 @@ The table below assumes that the PQ has been implemented via a binary heap.
 | Polling        | O(log n) |
 | Peeking | O(1) | 
 | Adding | O(log n)  | 
-| Removing an element which isn't the root node | O(n) |
+| Removing a non-root node | O(n) |
 | Contains (a non-root element) | O(n) |
-| Removing with the help of a hash table | O(log n) |
-| Contains with the help of a hash table | O(1) |
+| Removing a non-root node with the help of a hash table | O(log n) |
+| Contains (a non-root node) with the help of a hash table | O(1) |
 
 Polling both take logarithmic time because you need to restore the heap property once you have removed the root element. Similarly, adding takes logarithmic time because you need to restore the heap property once you have added an element to the heap. Note that using a hash table will lead to a space complexity of O(n). 
+
+### Priority Queue with a Binary Heap
+> A **binary heap** is a binary tree that satisfies the heap property. Recall that in a binary tree, every node has at most two children (or exactly two children if you count child nodes that are `NULL`). 
+
+A binary heap is best implemented using an array
+
+### Complete Binary Tree 
+> A **complete binary tree** is a binary tree in which all the levels are completely filled except possibly the lowest one, which is filled from the left.
+
+
+
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
@@ -213,12 +224,8 @@ Note that two different keys (e.g. strings) could have the same hash code. This 
 ### Runtime of a Hash Table
 The time complexity of operations in a hash table depend on what assumptions we make. Most of the time, we can assume we have a good hash table with a good hash funcion which distributes our values well. For this case, the time complexity of insert, find (lookup), and delete is O(1), i.e. constant time. In the worst case scenario, the time complexity for these operations is O(n). 
 
-## Minimum Heap
 
 ## Binary Search Tree (BST)
-
-
-### Priority Queue
 
 
 # References
