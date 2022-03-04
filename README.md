@@ -39,7 +39,7 @@ In this repository, I cover and/or implement some important data structures:
 - [x] [Minimum Heap](min_heap.py)
 - [x] [Binary Search Tree (BST)](binary_search_tree.py)
 - [x] [Stack](stack.py)
-- [ ] Queue and Priority Queue
+- [ ] [Queue](queue.py) and Priority Queue
 - [ ] Dequek
 - [ ] Graph
 
