@@ -4,11 +4,22 @@ class DoublyLinkedList():
         self.head = None
         self.tail = None
     
+    def __str__(self) -> str:
+        output = 'Doubly Linked List: '
+        trav = self.head
+        while trav is not None:
+            output += str(trav) + ' '
+            trav = trav.next
+        return output
+    
     class Node():
         def __init__(self, data, prev, next) -> None:
             self.data = data
             self.prev = prev
             self.next = next
+        
+        def __str__(self) -> str:
+            return str(self.data)
 
     # Empty the doubly linked list, O(n)
     def clear(self):
@@ -149,6 +160,7 @@ if __name__ == "__main__":
     dll.addFirst(3)
     dll.addFirst(-5)
     dll.addFirst(10)
+    print(dll)
     print(f"Tail of the doubly linked list: {dll.tail.data}")
     print(f"Head of the doubly linked list: {dll.head.data}")
     print(f"Size of the doubly linked list: {dll.size}")
