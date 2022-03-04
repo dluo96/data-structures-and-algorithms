@@ -34,11 +34,11 @@ Suppose n is the size of the input of an algorithm. I will use the following ter
 ### Repository structure
 In this repository, I cover and/or implement some important data structures:
 - [x] Static Arrays and Dynamic Arrays
-- [x] Linked List
-- [x] Hash Table
-- [x] Minimum Heap
-- [x] Binary Search Tree (BST)
-- [x] Stack
+- [x] [Singly Linked List](singly_linked_list.py) and [Doubly Linked List](doubly_linked_list.py)
+- [x] [Hash Table](hash_table.py)
+- [x] [Minimum Heap](min_heap.py)
+- [x] [Binary Search Tree (BST)](binary_search_tree.py)
+- [x] [Stack](stack.py)
 - [ ] Queue
 - [ ] Dequek
 - [ ] Graph
@@ -131,6 +131,29 @@ Assuming that the implementation of the singly linked list keeps track of the he
 | Remove at tail | O(n) | O(1)  |
 | Remove in middle | O(n) | O(n)|
 
+## Stack
+> A **stack** is a one-ended linear data structure which models a real-world stack by having two operations, namely **push** and **pop**. 
+
+A stack is a **last-in-first-out (LIFO)** data structure. Applications of stacks include:
+- Undo mechanism in text editors
+- Compiler syntax checking for matching braces and brackets
+- Used behind the scenes to support **recursion** by keeping track of previous function calls: when a function returns, it pops the current stack frame and rewinds to the next function on the stack.
+- Can be used to do a **Depth-First Search (DFS)** on a **graph**
+- Tower of Hanoi: each move of a disk corresponds to a pop of its original stack and a push to its new stack
+
+### Time complexity
+The table below assumes you have implemented the stack using a linked list.
+| Operation      | Stack | 
+| -----------    | -----------  | 
+| Push         | O(1) |
+| Pop | O(1) | 
+| Peek | O(1) | 
+| Search | O(n) | 
+| Size | O(1) |
+
+### Implementation
+A stack can be implemented in different ways including using an array, a singly linked list, and a doubly linked list. 
+
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
@@ -144,8 +167,6 @@ The time complexity of operations in a hash table depend on what assumptions we 
 ## Minimum Heap
 
 ## Binary Search Tree (BST)
-
-## Stack
 
 ## Queue
 
