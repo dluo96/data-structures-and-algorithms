@@ -174,7 +174,7 @@ A queue is a **first-in first-out (FIFO)** data structure. Note that enqueue is 
 A queue can be implemented in different ways including using an array, a singly linked list, or a doubly linked list. 
 
 ## Priority Queue
-> A **priority queue (PQ)** is an abstract data type (ADT) that operates similarly to a regular queue *except each element has a priority*. The priority of the elements in the PQ determine the order in which elements are removed from the PQ. 
+> A **priority queue (PQ)** is an abstract data type (ADT) that operates similarly to a regular queue *except each element has a priority*. The priority of the elements in the PQ determine the order in which elements are removed from the PQ. If two elements have the same priority, they are removed according to their order in the PQ.
 
 Note that PQs only support comparable data, i.e. the data must be able to be ordered in some way. This is necessary to ensure we can assign a priority to each element. Application of PQs include:
 - A* Search in graph traversal: the PQ is used to grab the most promising node
@@ -207,7 +207,7 @@ Polling both take logarithmic time because you need to restore the heap property
 ### Priority Queue with a Binary Heap
 > A **binary heap** is a binary tree that satisfies the heap property. Recall that in a binary tree, every node has at most two children (or exactly two children if you count child nodes that are `NULL`). 
 
-A binary heap is best implemented using an array
+A binary heap is best implemented using an array. 
 
 ### Complete Binary Tree 
 > A **complete binary tree** is a binary tree in which all the levels are completely filled except possibly the lowest one, which is filled from the left.
