@@ -171,7 +171,7 @@ A queue is a **first-in first-out (FIFO)** data structure. Note that enqueue is 
 | Removal | O(n) |
 
 ### Implementation
-A queue can be implemented in different ways including using an array, a singly linked list, or a doubly linked list. 
+A queue can be implemented in different ways including using an array, a singly linked list, or a doubly linked list. In Python, one option is to implement a queue using `collections.deque`.
 
 ## Priority Queue
 > A **priority queue (PQ)** is an abstract data type (ADT) that operates similarly to a regular queue *except each element has a priority*. The priority of the elements in the PQ determine the order in which elements are removed from the PQ. If two elements have the same priority, they are removed according to their order in the PQ.
@@ -194,15 +194,15 @@ A heap is one possible implementation (DS) for a PQ (recall that a PQ is an ADT)
 The table below assumes that the PQ has been implemented via a binary heap. 
 | Operation      | Queue | 
 | -----------    | -----------  | 
-| Polling        | O(log n) |
+| Polling (dequeue)        | O(log n) |
 | Peeking | O(1) | 
-| Adding | O(log n)  | 
+| Insertion (enqueue) | O(log n)  | 
 | Removing a non-root node | O(n) |
 | Contains (a non-root element) | O(n) |
 | Removing a non-root node with the help of a hash table | O(log n) |
 | Contains (a non-root node) with the help of a hash table | O(1) |
 
-Polling both take logarithmic time because you need to restore the heap property once you have removed the root element. Similarly, adding takes logarithmic time because you need to restore the heap property once you have added an element to the heap. Note that using a hash table will lead to a space complexity of O(n). 
+Polling both take logarithmic time because you need to restore the heap property once you have removed the root element. Similarly, insertion takes logarithmic time because you need to restore the heap property once you have added an element to the heap. Note that using a hash table will lead to a space complexity of O(n). 
 
 ### Priority Queue with a Binary Heap
 > A **binary heap** is a binary tree that satisfies the heap property. Recall that in a binary tree, every node has at most two children (or exactly two children if you count child nodes that are `NULL`). 
@@ -212,7 +212,8 @@ A binary heap is best implemented using an array.
 ### Complete Binary Tree 
 > A **complete binary tree** is a binary tree in which all the levels are completely filled except possibly the lowest one, which is filled from the left.
 
-
+### Implementation
+Again, the heap DS is a maximally efficient implementation of the PQ ADT. In Python, this can be done via the `heapq` library.
 
 
 ## Hash Tables
