@@ -35,12 +35,12 @@ Suppose n is the size of the input of an algorithm. I will use the following ter
 In this repository, I cover and/or implement some important data structures:
 - [x] Static Arrays and Dynamic Arrays
 - [x] [Singly Linked List](singly_linked_list.py) and [Doubly Linked List](doubly_linked_list.py)
-- [x] [Hash Table](hash_table.py)
-- [x] [Minimum Heap](min_heap.py)
-- [x] [Binary Search Tree (BST)](binary_search_tree.py)
 - [x] [Stack](stack.py)
 - [x] [Queue](queue.py) and [Priority Queue](priority_queue.py)
-- [ ] Dequek
+- [x] [Minimum Heap](min_heap.py)
+- [ ] Union-find (aka disjoint-set)
+- [x] [Binary Search Tree (BST)](binary_search_tree.py)
+- [x] [Hash Table](hash_table.py)
 - [ ] Graph
 
 I also discuss the relationship between
@@ -214,6 +214,44 @@ A binary heap is best implemented using an array.
 
 ### Implementation
 Again, the heap DS is a maximally efficient implementation of the PQ ADT. In Python, this can be done via the `heapq` library.
+
+## Union-find
+> **Union-find** is a DS that keeps track of elements that are split into one or more disjoint sets. It has two main operations: **find** and **union**.
+
+Now,
+- **Find** operation: given an element, it tells you which group that element belongs to. This is done by finding the root of the group by following the parent nodes until a self-loop (a node whose parent is itself) is reached. 
+- **Union** operation: merges two groups together (in a very efficient manner). To do this, find the root node of each group: if they are different nodes, make the root node of the bigger group the parent node of the other root node. 
+
+A few remarks: 
+- In the union-find DS, one generally does not "un-union" elements (one reason being that it would be very inefficient). 
+- The number of groups is equivalent to the number of root nodes remaining.
+- The number of root nodes never increases.
+
+Applications include:
+- Kruskal's algorithm, which finds the minimum spanning tree for an edge-weighted graph
+- Grid percolation
+- Network connectivity
+- Least common ancestor in trees
+- Image processing
+
+### Complexity
+In the table below, `a` refers to **amortized** time. For example, a(n) means *almost* constant time, but not quite. 
+| Operation      | Union-find | 
+| -----------    | -----------  | 
+| Construction   | O(n) |
+| Union | a(n) |
+| Find | a(n) |
+| Get group size | a(n) |
+| Check if connected | a(n) |
+| Count groups | O(1) |
+
+### Implementing the find and union operations
+Array-based implementation of union-find DS:
+
+1. Construct a **bijective map** (i.e. a map that is both injective and surjective) between your objects and the integers `0, 1, ..., n-1`.
+2. Randomly assign a mapping between the objects and the integers. We can use this as a lookup. 
+3. Construct an array with the integers.
+4. Union operation: if you union two elements, choose one to be the parent. Then update the index of the child in the array to have the index of the parent. For example, `[0, 1, 2, 3]` might become `[0, 0, 2, 3]` after one union operation and e.g. `[0, 0, 2, 2]` after another. 
 
 
 ## Hash Tables
