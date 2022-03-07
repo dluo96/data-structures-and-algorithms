@@ -253,6 +253,10 @@ Array-based implementation of union-find DS:
 3. Construct an array with the integers.
 4. Union operation: if you union two elements, choose one to be the parent. Then update the index of the child in the array to have the index of the parent. For example, `[0, 1, 2, 3]` might become `[0, 0, 2, 3]` after one union operation and e.g. `[0, 0, 2, 2]` after another. 
 
+Unfortunately, the above implementation does not have the nice a(n) time complexity that we want: checking if two elements belong to the same group can take several "hops" and potentially many more. This is resolved by **path compression**. This operation is what makes the union-find DS one of the most powerful data structures. 
+
+> **Path compression** is an operation that reduces the time complexity of operations in the union-find DS. It gets each element of a group to point directly to the group's root node. This reduces the time complexity of the find operation and the union operation. 
+
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
