@@ -38,7 +38,7 @@ In this repository, I cover and/or implement some important data structures:
 - [x] [Stack](stack.py)
 - [x] [Queue](queue.py) and [Priority Queue](priority_queue.py)
 - [x] [Minimum Heap](min_heap.py)
-- [ ] Union-find (aka disjoint-set)
+- [x] [Union-find](union_find.py) (aka disjoint-set)
 - [x] [Binary Search Tree (BST)](binary_search_tree.py)
 - [x] [Hash Table](hash_table.py)
 - [ ] Graph
