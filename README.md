@@ -274,7 +274,7 @@ If we have a **rooted tree**, we will want to have a reference to the root node 
 > A **binary tree** is a tree for which every node has *at most* two child nodes. 
 
 ### Binary Search Tree (BST)
-> A **binary search tree (BST)** is a binary tree that satisfies **BST invariance**: for any given node, its left subtree has smaller elements and its right subtree has larger elements. 
+> A **binary search tree (BST)** is a binary tree that satisfies **BST invariance**: for every node, all the nodes in its left subtree are smaller, and all the nodes in its right subtree are larger.
 
 Note:
 - BST operations allow for duplicate values, but mostly we are interested in having unique elements inside our BST. 
