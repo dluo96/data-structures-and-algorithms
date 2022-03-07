@@ -267,8 +267,47 @@ Note that two different keys (e.g. strings) could have the same hash code. This 
 ### Runtime of a Hash Table
 The time complexity of operations in a hash table depend on what assumptions we make. Most of the time, we can assume we have a good hash table with a good hash funcion which distributes our values well. For this case, the time complexity of insert, find (lookup), and delete is O(1), i.e. constant time. In the worst case scenario, the time complexity for these operations is O(n). 
 
+## Trees
+> A **tree** is an **undirected graph** which satisfies any of the following definitions:
+> - An acyclic connected graph.
+> - A connected graph with N nodes and N-1 edges.
+> - A graph in which any two vertices are connected by *exactly* one path.
 
-## Binary Search Tree (BST)
+If we have a **rooted tree**, we will want to have a reference to the root node of the tree. It doesn't always matter which node is selected as the root node, since any node can technically be chosen to be the root node. 
+
+- A **child** is a node extending from another node. 
+- A **parent** is the inverse of this. The root node does not have a parent, however it can sometimes be useful to assign the parent of the root node to be the root node itself. This is for example the case for a filesystem tree. 
+- A **leaf node** is a node with no children. 
+- **Subtree**: a tree that is entirely contained within another. They are usually denoted using triangles. Note that subtrees may consist of a single node. 
+
+### Binary Tree
+> A **binary tree** is a tree for which every node has *at most* two child nodes. 
+
+### Binary Search Tree (BST)
+> A **binary search tree (BST)** is a binary tree that satisfies **BST invariance**: for any given node, its left subtree has smaller elements and its right subtree has larger elements. 
+
+Note:
+- BST operations allow for duplicate values, but mostly we are interested in having unique elements inside our BST. 
+- We are not limited to having numbers in the BST. Any type of data that can be ordered can be placed in a BST. 
+
+Applications of BSTs include:
+- Implementations of some Map ADTs and Set ADTs
+- Red Black Trees
+- AVL Trees
+- Splay Trees
+- Implementation of binary heaps
+- Syntax Trees which are used by compilers and calculators
+- Treap, which is a probabilistic DS
+
+#### Complexity
+| Operation      | Average | Worst case | 
+| -----------    | -----------  | -----------  | 
+| Insert   | O(log n) | O(n) |
+| Delete   | O(log n) | O(n) |
+| Remove   | O(log n) | O(n) |
+| Search   | O(log n) | O(n) |
+
+The worst case corresponds to the scenario in which the BST is essentially a linked list. 
 
 
 # References
