@@ -1,24 +1,31 @@
 class UnionFind():
-    def __init__(self, size) -> None:
-        self.size = size      # The number of elements in this union-find DS
-        self.sz = []       # Used to track the size of each group
-        self.id = []       # id[i] points to the parent of i. If id[i] = i, then i is a root node
-        self.numGroups = 0 # Number of groups in the union-find DS
+    """Array-based implementation of the union-find DS"""
 
+    def __init__(self, size : int) -> None:
+
+        # The number of elements in this union-find DS
+        self.size = size
         if self.size <= 0:
             raise ValueError("Size <= 0 is not allowed")
 
-        self.numGroups = size # Initially the number of groups is the number of elements
+        # Used to track the size of each group
         self.sz = [None] * self.size
-        self.id = [None] * self.size
 
+        # id[i] points to the parent of i. If id[i] = i, then i is a root node
+        self.id = [None] * self.size
+        
+        # Number of groups in the union-find DS
+        # Initially the number of groups is the number of elements
+        self.numGroups = size 
+
+        # Construct the array
         for i in range(0, self.size):
-            self.id[i] = i # Link to itself (self-root)
+            self.id[i] = i # Link the node to itself (self-root)
             self.sz[i] = 1 # Each group is originally of size 1
             i += 1
         
     
-    def find(self, p):
+    def find(self, p : int):
         """Find which group the element p belongs to. Takes amortized constant time."""
 
         # Find the root of the group
@@ -67,3 +74,9 @@ class UnionFind():
         # Since the root nodes were different, we know
         # that the number of groups has decreased by 1
         self.numGroups -= 1
+
+if __name__ == "__main__":
+
+    uf = UnionFind(10)
+
+    
