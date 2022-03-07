@@ -257,16 +257,6 @@ Unfortunately, the above implementation does not have the nice a(n) time complex
 
 > **Path compression** is an operation that reduces the time complexity of operations in the union-find DS. It gets each element of a group to point directly to the group's root node. This reduces the time complexity of the find operation and the union operation. 
 
-
-## Hash Tables
-At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
-
-### Collisions
-Note that two different keys (e.g. strings) could have the same hash code. This is because there are an infinitely many possible strings but only a finite number of hash codes. In addition, since we are remaping the hash code into an even smaller index, two keys with different hash codes can actually end up with the same index. This is called a **collision**. What do we do in this case? There are different ways to resolve collisions, one of which is called **chaining**: when there are collisions, store the associated values in a **linked list**. Thus, rather than having an array of values, we'll have an array of a linked list of values. Importantly, each linked list contains not just the values but also the original keys. 
-
-### Runtime of a Hash Table
-The time complexity of operations in a hash table depend on what assumptions we make. Most of the time, we can assume we have a good hash table with a good hash funcion which distributes our values well. For this case, the time complexity of insert, find (lookup), and delete is O(1), i.e. constant time. In the worst case scenario, the time complexity for these operations is O(n). 
-
 ## Trees
 > A **tree** is an **undirected graph** which satisfies any of the following definitions:
 > - An acyclic connected graph.
@@ -307,8 +297,27 @@ Applications of BSTs include:
 | Remove   | O(log n) | O(n) |
 | Search   | O(log n) | O(n) |
 
-The worst case corresponds to the scenario in which the BST is essentially a linked list. 
+In the worst case scenario, where the BST is a linked list, the time complexity of the above operations degenerate to O(n). This is the reason that **balanced BSTs** were invented.
 
+#### Insertion
+Note again that BST elements must be comparable so that we can order them inside the BST. When inserting an element into the BST, we compare its value to the current node (starting from the root node) and do one of the following:
+
+- Move down the left subtree if the element is less than the current node.
+- Move down the right subtree if the element is greater than the current node.
+- Handle finding a duplicate value: if your BST supports duplicate values, add another node. If not, do nothing. 
+- Create a new node if you find a leaf node.
+
+#### Removal
+
+
+## Hash Tables
+At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
+
+### Collisions
+Note that two different keys (e.g. strings) could have the same hash code. This is because there are an infinitely many possible strings but only a finite number of hash codes. In addition, since we are remaping the hash code into an even smaller index, two keys with different hash codes can actually end up with the same index. This is called a **collision**. What do we do in this case? There are different ways to resolve collisions, one of which is called **chaining**: when there are collisions, store the associated values in a **linked list**. Thus, rather than having an array of values, we'll have an array of a linked list of values. Importantly, each linked list contains not just the values but also the original keys. 
+
+### Runtime of a Hash Table
+The time complexity of operations in a hash table depend on what assumptions we make. Most of the time, we can assume we have a good hash table with a good hash funcion which distributes our values well. For this case, the time complexity of insert, find (lookup), and delete is O(1), i.e. constant time. In the worst case scenario, the time complexity for these operations is O(n). 
 
 # References
 - [Data Structures Easy to Advanced Course](https://www.youtube.com/watch?v=RBSGKlAvoiM)
