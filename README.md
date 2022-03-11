@@ -319,17 +319,21 @@ In finding the element we wish to remove, there are four possible scenarios:
 - The comparator value is greater than 0, which means that the value (if it exists) is in the right subtree
 
 Once you have found the element you want to remove (assuming that it exists), there are four possible removal scenarios:
-- Node to be removed is a leaf node
+- **Case 1**: Node to be removed is a leaf node
   - Can remove the node with no side effects
-- Node to be removed has a right subtree but no left subtree
+- **Case 2**: Node to be removed has a right subtree but no left subtree
   - The successor of the removed node will be the root node of the right subtree
   - It may be the case that you are removing the root node of the BST, in which case the successor is the immediate child of the root node.
-- Node to be removed has a left subtree but no right subtree
+- **Case 3**: Node to be removed has a left subtree but no right subtree
   - The successor of the removed node will be the root node of the left subtree
   - It may be the case that you are removing the root node of the BST, in which case the successor is the immediate child of the root node.
-- Node to be removed has both a left subtree and a right subtree
-  - The key question is: in which subtree will the successor (of the node to be removed) be? The answer is: either the largest value in the left subtree or the smallest value in the right subtree. The former would respect BST invariance because the largest value in the left subtree is (a) larger than everything in the left subtree, and (b) smaller than everything in the right subtree (because it was found in the left subtree). The latter would respect BST invariance because the smallest value in the right subtree is (a) smaller than everything in the right subtree, and (b) larger than everything in the left subtree (because it was found in the right subtree).
+- **Case 4**: Node to be removed has both a left subtree and a right subtree
+  - The key question is: in which subtree will the successor (of the node to be removed) be? The answer is both! 
+  - There are two possible successors: either the **largest value in the left subtree** or the **smallest value in the right subtree**. The former would respect BST invariance because the largest value in the left subtree is (a) larger than everything in the left subtree, and (b) smaller than everything in the right subtree (because it was found in the left subtree). The latter would respect BST invariance because the smallest value in the right subtree is (a) smaller than everything in the right subtree, and (b) larger than everything in the left subtree (because it was found in the right subtree).
+  - To find the smallest value in the right subtree, go as far left as possible in it. Once found, put this into the removed node. Next you need to remove this element (to avoid duplication): luckily, the removal will always be Case 1 or Case 2. 
+  - To find the largest value in the left subtree, go as far right as possible in it. Once found, put this value into the removed node. Next you must remove this element (to avoid duplication): luckily, the removal will always be Case 1 or Case 3. 
 
+#### Traversals
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
