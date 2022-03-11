@@ -308,6 +308,27 @@ Note again that BST elements must be comparable so that we can order them inside
 - Create a new node if you find a leaf node.
 
 #### Removal
+Removing an element from a BST can be viewed as a two-step process:
+1. Find the element that we wish to remove (if it exists)
+2. Replace this node with its successor (if any) to maintain the BST invariance
+
+In finding the element we wish to remove, there are four possible scenarios:
+- We hit a `NULL` node and we conclude that the value does not exist in the BST
+- The comparator value equals 0, which means we have found the element
+- The comparator value is less than 0, which means that the value (if it exists) is in the left subtree 
+- The comparator value is greater than 0, which means that the value (if it exists) is in the right subtree
+
+Once you have found the element you want to remove (assuming that it exists), there are four possible removal scenarios:
+- Node to be removed is a leaf node
+  - Can remove the node with no side effects
+- Node to be removed has a right subtree but no left subtree
+  - The successor of the removed node will be the root node of the right subtree
+  - It may be the case that you are removing the root node of the BST, in which case the successor is the immediate child of the root node.
+- Node to be removed has a left subtree but no right subtree
+  - The successor of the removed node will be the root node of the left subtree
+  - It may be the case that you are removing the root node of the BST, in which case the successor is the immediate child of the root node.
+- Node to be removed has both a left subtree and a right subtree
+  - The key question is: in which subtree will the successor (of the node to be removed) be? The answer is: either the largest value in the left subtree or the smallest value in the right subtree. The former would respect BST invariance because the largest value in the left subtree is (a) larger than everything in the left subtree, and (b) smaller than everything in the right subtree (because it was found in the left subtree). The latter would respect BST invariance because the smallest value in the right subtree is (a) smaller than everything in the right subtree, and (b) larger than everything in the left subtree (because it was found in the right subtree).
 
 
 ## Hash Tables
