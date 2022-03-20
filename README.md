@@ -334,6 +334,12 @@ Once you have found the element you want to remove (assuming that it exists), th
   - To find the largest value in the left subtree, go as far right as possible in it. Once found, put this value into the removed node. Next you must remove this element (to avoid duplication): luckily, the removal will always be Case 1 or Case 3. 
 
 #### Traversals
+Preorder, inorder, and postorder traversals are naturally defined recursively. 
+- **Preorder** traversal: prints before the recursive calls. So the order is root node -> left node -> right node.
+- **Inorder** traversal: prints between the recursive calls. So the order is left node -> root node -> right node. Importantly, this prints the values in a BST in increasing order. See the implementation [here](binary_search_tree.py). 
+- **Postorder** traversal: prints after the recursive calls. So the order is left node -> right node -> root node. 
+
+There is another traversal method known as **level order traversal**: print the nodes as they appear, one layer at a time. To achieve this, use a **Breadth First Search (BFS)** from the root node down to the leaf nodes. To do a BFS, one can maintain a queue of the unexplored nodes. At first, the queue will contain only the root node. At each iteration, add the left child and then the right child, of the current node, to the queue. 
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
