@@ -4,8 +4,9 @@ class Node():
         self.left = None
         self.right = None
 
-    # Recursive implementation of inserting an element
+
     def insert(self, value):
+        """Recursive implementation of inserting an element"""
         if value <= self.data:
             if self.left == None: 
                 self.left = Node(value)
@@ -17,8 +18,9 @@ class Node():
             else:
                 self.right.insert(value)
 
-    # Recursive implementation of checking if the BST contains a specific element
+
     def contains(self, value):
+        """Recursive implementation of checking if the BST contains a specific element"""
         if value == self.data:
             return True
         elif value < self.data:
@@ -31,21 +33,44 @@ class Node():
                 return False
             else:
                 self.right.contains(value)
+    
 
-    # Inorder traversal to print all the nodes in the BST
-    def inorderTraversal(self):
-        """Inorder traversal of a BST using recursion"""
-        # Recall that inorder traversal prints left child, then root, then right child
-        if self.left != None:
-            self.left.inorderTraversal()
+    def preorderTraversal(self):
+        """Preorder traversal of a BST using recursion. Recall that preorder 
+           traversal prints root node, left child, then right child"""
 
         print(self.data)
+        if self.left is not None:
+            self.left.preorderTraversal()
+        if self.right is not None:
+            self.right.preorderTraversal()
+    
 
-        if self.right != None:
+    def postorderTraversal(self):
+        """Postorder traversal of a BST using recursion. Recall that inorder 
+           traversal prints left child, right child, then root node"""
+
+        if self.left is not None:
+            self.left.postorderTraversal()
+        if self.right is not None:
+            self.right.postorderTraversal()
+        print(self.data)
+    
+
+    def inorderTraversal(self):
+        """Inorder traversal of a BST using recursion. Recall that inorder 
+           traversal prints left child, then root, then right child"""
+
+        if self.left is not None:
+            self.left.inorderTraversal()
+        print(self.data)
+        if self.right is not None:
             self.right.inorderTraversal()
+
     
     def inorderTraversalIterative(self, node):
         """Inorder traversal of a BST done iteratively"""
+
         stack = []
         while node is not None or len(stack) != 0:
             if node is not None:
@@ -58,13 +83,19 @@ class Node():
 
 
 if __name__ == "__main__":
+
     node = Node(10)
     for value in [5, 15, 8, 17, 2]:
         node.insert(value)
+
     print(f"Inorder traversal of binary search tree using recursion:")
     node.inorderTraversal()
 
     print(f"Inorder traversal of BST implemented iteratively:")
     node.inorderTraversalIterative(node)
 
+    print(f"Preorder traversal")
+    node.preorderTraversal()
 
+    print(f"Postorder traversal")
+    node.postorderTraversal()
