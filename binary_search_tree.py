@@ -47,7 +47,7 @@ class Node():
     
 
     def postorderTraversal(self):
-        """Postorder traversal of a BST using recursion. Recall that inorder 
+        """Postorder traversal of a BST using recursion. Recall that postorder 
            traversal prints left child, right child, then root node"""
 
         if self.left is not None:
