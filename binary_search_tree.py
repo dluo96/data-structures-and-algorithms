@@ -33,20 +33,38 @@ class Node():
                 self.right.contains(value)
 
     # Inorder traversal to print all the nodes in the BST
-    def traversalInOrder(self):
+    def inorderTraversal(self):
+        """Inorder traversal of a BST using recursion"""
         # Recall that inorder traversal prints left child, then root, then right child
         if self.left != None:
-            self.left.traversalInOrder()
+            self.left.inorderTraversal()
 
         print(self.data)
 
         if self.right != None:
-            self.right.traversalInOrder()
+            self.right.inorderTraversal()
+    
+    def inorderTraversalIterative(self, node):
+        """Inorder traversal of a BST done iteratively"""
+        stack = []
+        while node is not None or len(stack) != 0:
+            if node is not None:
+                stack.append(node)
+                node = node.left
+            else:
+                node = stack.pop()
+                print(node.data)
+                node = node.right
 
 
 if __name__ == "__main__":
     node = Node(10)
     for value in [5, 15, 8, 17, 2]:
         node.insert(value)
-    print(f"Inorder traversal of binary search tree:")
-    node.traversalInOrder()
+    print(f"Inorder traversal of binary search tree using recursion:")
+    node.inorderTraversal()
+
+    print(f"Inorder traversal of BST implemented iteratively:")
+    node.inorderTraversalIterative(node)
+
+
