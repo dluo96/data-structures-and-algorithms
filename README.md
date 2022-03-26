@@ -38,7 +38,7 @@ In this repository, I cover and/or implement some important data structures:
 - [x] [Stack](stack.py)
 - [x] [Queue](queue.py) and [Priority Queue](priority_queue.py)
 - [x] [Minimum Heap](min_heap.py)
-- [ ] Union-find (aka disjoint-set)
+- [x] [Union-find](union_find.py) (aka disjoint-set)
 - [x] [Binary Search Tree (BST)](binary_search_tree.py)
 - [x] [Hash Table](hash_table.py)
 - [ ] Graph
@@ -257,6 +257,90 @@ Unfortunately, the above implementation does not have the nice a(n) time complex
 
 > **Path compression** is an operation that reduces the time complexity of operations in the union-find DS. It gets each element of a group to point directly to the group's root node. This reduces the time complexity of the find operation and the union operation. 
 
+## Trees
+> A **tree** is an **undirected graph** which satisfies any of the following definitions:
+> - An acyclic connected graph.
+> - A connected graph with N nodes and N-1 edges.
+> - A graph in which any two vertices are connected by *exactly* one path.
+
+If we have a **rooted tree**, we will want to have a reference to the root node of the tree. It doesn't always matter which node is selected as the root node, since any node can technically be chosen to be the root node. 
+
+- A **child** is a node extending from another node. 
+- A **parent** is the inverse of this. The root node does not have a parent, however it can sometimes be useful to assign the parent of the root node to be the root node itself. This is for example the case for a filesystem tree. 
+- A **leaf node** is a node with no children. 
+- **Subtree**: a tree that is entirely contained within another. They are usually denoted using triangles. Note that subtrees may consist of a single node. 
+
+### Binary Tree
+> A **binary tree** is a tree for which every node has *at most* two child nodes. 
+
+### Binary Search Tree (BST)
+> A **binary search tree (BST)** is a binary tree that satisfies **BST invariance**: for every node, all the nodes in its left subtree are smaller, and all the nodes in its right subtree are larger.
+
+Note:
+- BST operations allow for duplicate values, but mostly we are interested in having unique elements inside our BST. 
+- We are not limited to having numbers in the BST. Any type of data that can be ordered can be placed in a BST. 
+
+Applications of BSTs include:
+- Implementations of some Map ADTs and Set ADTs
+- Red Black Trees
+- AVL Trees
+- Splay Trees
+- Implementation of binary heaps
+- Syntax Trees which are used by compilers and calculators
+- Treap, which is a probabilistic DS
+
+#### Complexity
+| Operation      | Average | Worst case | 
+| -----------    | -----------  | -----------  | 
+| Insert   | O(log n) | O(n) |
+| Delete   | O(log n) | O(n) |
+| Remove   | O(log n) | O(n) |
+| Search   | O(log n) | O(n) |
+
+In the worst case scenario, where the BST is a linked list, the time complexity of the above operations degenerate to O(n). This is the reason that **balanced BSTs** were invented.
+
+#### Insertion
+Note again that BST elements must be comparable so that we can order them inside the BST. When inserting an element into the BST, we compare its value to the current node (starting from the root node) and do one of the following:
+
+- Move down the left subtree if the element is less than the current node.
+- Move down the right subtree if the element is greater than the current node.
+- Handle finding a duplicate value: if your BST supports duplicate values, add another node. If not, do nothing. 
+- Create a new node if you find a leaf node.
+
+#### Removal
+Removing an element from a BST can be viewed as a two-step process:
+1. Find the element that we wish to remove (if it exists)
+2. Replace this node with its successor (if any) to maintain the BST invariance
+
+In finding the element we wish to remove, there are four possible scenarios:
+- We hit a `NULL` node and we conclude that the value does not exist in the BST
+- The comparator value equals 0, which means we have found the element
+- The comparator value is less than 0, which means that the value (if it exists) is in the left subtree 
+- The comparator value is greater than 0, which means that the value (if it exists) is in the right subtree
+
+Once you have found the element you want to remove (assuming that it exists), there are four possible removal scenarios:
+- **Case 1**: Node to be removed is a leaf node
+  - Can remove the node with no side effects
+- **Case 2**: Node to be removed has a right subtree but no left subtree
+  - The successor of the removed node will be the root node of the right subtree
+  - It may be the case that you are removing the root node of the BST, in which case the successor is the immediate child of the root node.
+- **Case 3**: Node to be removed has a left subtree but no right subtree
+  - The successor of the removed node will be the root node of the left subtree
+  - It may be the case that you are removing the root node of the BST, in which case the successor is the immediate child of the root node.
+- **Case 4**: Node to be removed has both a left subtree and a right subtree
+  - The key question is: in which subtree will the successor (of the node to be removed) be? The answer is both! 
+  - There are two possible successors: either the **largest value in the left subtree** or the **smallest value in the right subtree**. The former would respect BST invariance because the largest value in the left subtree is (a) larger than everything in the left subtree, and (b) smaller than everything in the right subtree (because it was found in the left subtree). The latter would respect BST invariance because the smallest value in the right subtree is (a) smaller than everything in the right subtree, and (b) larger than everything in the left subtree (because it was found in the right subtree).
+  - To find the smallest value in the right subtree, go as far left as possible in it. Once found, put this into the removed node. Next you need to remove this element (to avoid duplication): luckily, the removal will always be Case 1 or Case 2. 
+  - To find the largest value in the left subtree, go as far right as possible in it. Once found, put this value into the removed node. Next you must remove this element (to avoid duplication): luckily, the removal will always be Case 1 or Case 3. 
+
+#### Preorder, Inorder, and Postorder Traversals
+Preorder, inorder, and postorder traversals are naturally defined recursively. 
+- **Preorder** traversal: prints before the recursive calls. So the order is root node -> left node -> right node.
+- **Inorder** traversal: prints between the recursive calls. So the order is left node -> root node -> right node. Importantly, this prints the values in a BST in increasing order. See the implementation [here](binary_search_tree.py). 
+- **Postorder** traversal: prints after the recursive calls. So the order is left node -> right node -> root node. 
+
+#### Level-order Traversal using Breadth First Search (BFS)
+There is another traversal method known as **level order traversal**: print the nodes as they appear, one layer at a time. To achieve this, use a **Breadth First Search (BFS)** from the root node down to the leaf nodes. To do a BFS, one can maintain a **queue** of the *unexplored* nodes. At first, the queue will contain only the root node. At each iteration, enqueue the left child and then enqueue the right child of the current node to the queue. After this, move to the next element (and dequeue this) of the queue and repeat until the queue is empty. This results in the desired level order traversal.
 
 ## Hash Tables
 At a high level, a hash table is a key-value look-up. You associate a value with every key. This leads to very fast lookups. The keys and values can basically be any type of data structure. A string is often used but it could be a class object or pretty much anything provided you have a **hash function**. At a high level, we do want to store the objects in an array. How do we go from (say) a string to a particular index in the array? That's what the hash function does. The hash function maps a string to an integer, which is later mapped to an index of the array. So we map from the key to the integer, which is then mapped to an index. We have to do the second step because the integer output of the hash function might be much larger than the size (and thus number of indexes) of the array. 
@@ -266,10 +350,6 @@ Note that two different keys (e.g. strings) could have the same hash code. This 
 
 ### Runtime of a Hash Table
 The time complexity of operations in a hash table depend on what assumptions we make. Most of the time, we can assume we have a good hash table with a good hash funcion which distributes our values well. For this case, the time complexity of insert, find (lookup), and delete is O(1), i.e. constant time. In the worst case scenario, the time complexity for these operations is O(n). 
-
-
-## Binary Search Tree (BST)
-
 
 # References
 - [Data Structures Easy to Advanced Course](https://www.youtube.com/watch?v=RBSGKlAvoiM)
