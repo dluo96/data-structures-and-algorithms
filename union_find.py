@@ -79,4 +79,7 @@ if __name__ == "__main__":
 
     uf = UnionFind(10)
 
-    
+    print(f"Number of elements: {uf.size}")
+    print(f"Number of groups: {uf.numGroups}")
+    print(f"id array: {uf.id}")
+    print(f"Array of group sizes: {uf.sz}")
